@@ -4,8 +4,8 @@
 // @version      1.1b
 // @description  Open-source Facebook comment scraper with nested reply support, auto-downloads JSON export, hierarchical structure, and multi-strategy depth detection
 // @author       Original from Rick Bouma (Disrex Group)
-// @downloadURL  fill later 
-// @updateURL    fill later 
+// @downloadURL  https://github.com/msbrown/bang_comments_dnld/blob/main/bang_comments_dnld.user.js
+// @updateURL    fhttps://github.com/msbrown/bang_comments_dnld/blob/main/bang_comments_dnld.user.js
 // @match        https://www.facebook.com/*
 // @match        https://m.facebook.com/*
 // @grant        none
