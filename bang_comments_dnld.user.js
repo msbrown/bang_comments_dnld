@@ -1466,8 +1466,6 @@
                 console.warn(`⚠️ ${unloadedCount} comments may have unloaded replies!`);
             }
 
-            // Automatically download JSON (no confirmation dialog)
-            console.log(`💾 Auto-downloading JSON export: ${accountName}__${postId}__${datetime}.json`);
             // Extract account name and post ID from URL
             const url = window.location.href;
             const urlMatch = url.match(/facebook\.com\/([^/]+)\/posts\/([^/?]+)/);
@@ -1477,9 +1475,10 @@
             // Format datetime
             const now = new Date();
             const datetime = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
-
+ 
+            // Automatically download JSON (no confirmation dialog)
+            console.log(`💾 Auto-downloading JSON export: ${accountName}__${postId}__${datetime}.json`);
             downloadJSON(comments, `${accountName}__${postId}__${datetime}.json`);
-
 
             updateUI('✅ Done!', {
                 statusText: 'JSON Downloaded',
