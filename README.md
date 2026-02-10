@@ -2,8 +2,8 @@
 
 This is a variation of v 1.1 code from Facebook Comment Scraper Userscript https://github.com/disrex-group/FB-Comments-Exporter-User-script
 
-Modifies name of file to formate {account}__{postid}__datetime.json It uses the url to extract the account and post id assuming this logic: https://www.facebook.com/{accountname}/posts/{postid}]
-- replaces . with - for naming. 
+Modifies name of file to formate {account}__{postid}__datetime.json It uses the url to extract the account and post id assuming this logic: https://www.facebook.com/{accountname}/posts/{postid}
+- Replaces . with - for naming. 
 
 # Install 
 1. **Install Extension & check permissions**: [Tampermonkey](https://tampermonkey.net/) (Chrome/Edge) or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) (Firefox)

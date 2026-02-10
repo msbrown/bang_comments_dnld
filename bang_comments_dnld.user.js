@@ -1466,7 +1466,7 @@
                 console.warn(`⚠️ ${unloadedCount} comments may have unloaded replies!`);
             }
 
-            // Extract account name and post ID from URL
+            // Extract account name and post ID from URL & replace . with - in account names 
             const url = window.location.href;
             const urlMatch = url.match(/facebook\.com\/([^/]+)\/posts\/([^/?]+)/);
             const accountName = urlMatch ? urlMatch[1].replace(/\./g, '-') : 'unknown';
