@@ -1320,10 +1320,16 @@
 
     function downloadJSON(data, filename, hierarchical = true) {
         let exportData;
-
+        const pageUrl = window.location.href;
+        const urlMatch = pageUrl.match(/facebook\.com\/([^/]+)\/posts\/([^/?]+)/);
+        const accountName = urlMatch ? urlMatch[1] : 'unknown';
+        const postId = urlMatch ? urlMatch[2] : 'unknown';
         if (hierarchical) {
             // Export as hierarchical tree structure
             exportData = {
+                postUrlScraped: pageUrl,
+                accountName: accountName,
+                postId: postId,
                 format: 'hierarchical',
                 totalComments: data.length,
                 mainComments: data.filter(c => c.depth === 0).length,
@@ -1334,6 +1340,9 @@
         } else {
             // Export as flat array with parent references
             exportData = {
+                postUrlScraped: pageUrl,
+                accountName: accountName,
+                postId: postId,
                 format: 'flat',
                 totalComments: data.length,
                 mainComments: data.filter(c => c.depth === 0).length,
@@ -1466,10 +1475,11 @@
                 console.warn(`⚠️ ${unloadedCount} comments may have unloaded replies!`);
             }
 
-            // Extract account name and post ID from URL & replace . with - in account names 
+            // Extract account name and post ID from URL  
             const url = window.location.href;
             const urlMatch = url.match(/facebook\.com\/([^/]+)\/posts\/([^/?]+)/);
-            const accountName = urlMatch ? urlMatch[1].replace(/\./g, '-') : 'unknown';
+            // modified version for accountNameMod which replaces  . with - since variable is used to name file
+            const accountNameMod = urlMatch ? urlMatch[1].replace(/\./g, '-') : 'unknown';
             const postId = urlMatch ? urlMatch[2] : 'unknown';
 
             // Format datetime
@@ -1477,8 +1487,8 @@
             const datetime = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
  
             // Automatically download JSON (no confirmation dialog)
-            console.log(`💾 Auto-downloading JSON export: ${accountName}__${postId}__${datetime}.json`);
-            downloadJSON(comments, `${accountName}__${postId}__${datetime}.json`);
+            console.log(`💾 Auto-downloading JSON export: ${accountNameMod}__${datetime}.json`);
+            downloadJSON(comments, `${accountNameMod}__${datetime}.json`);
 
             updateUI('✅ Done!', {
                 statusText: 'JSON Downloaded',
