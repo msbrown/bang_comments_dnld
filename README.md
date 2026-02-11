@@ -2,8 +2,11 @@
 
 This is a variation of v 1.1 code from Facebook Comment Scraper Userscript https://github.com/disrex-group/FB-Comments-Exporter-User-script
 
-Modifies name of file to format {account}__{postid}__datetime.json It uses the url to extract the account and post id assuming this logic: https://www.facebook.com/{accountname}/posts/{postid}
-- Replaces . with - in account names. 
+Makes these modifications: 
+ - It adds url being scraped (postUrlScraped), and using the format of that url, it extracts the name of the account (accountName) and the post ID (postId) and all three are added to the top of the Json file for analysis later. 
+    - Assumed logic for parsing url is http://www.facebook.com/{accountName}/posts/{postId}
+- Filename: it uses the accountName (extracted from url) and the datetime to name the json 
+  - In cases where the account name contains . it replaces those with - in the filename. 
 
 # Install 
 1. **Install Extension & check permissions**: [Tampermonkey](https://tampermonkey.net/) (Chrome/Edge) or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) (Firefox)
@@ -27,13 +30,13 @@ Modifies name of file to format {account}__{postid}__datetime.json It uses the u
    - Expand replies (including nested replies)
    - Detect comment depth and hierarchy
    - Collect comprehensive comment data
-5. **Auto-Export** - JSON file downloads automatically when complete using naming convention: {account}__{postid}__datetime.json
+5. **Auto-Export** - JSON file downloads automatically when complete using naming convention: {accountName}__{datetime}.json
 
 
 The exported json file include:
 - original url 
-- account name (parsed from link)
-- post id (parsed from link)
+- account name (parsed from url)
+- post id (parsed from url)
 
 - **Author Name**: Commenter's display name
 - **Profile URL**: Link to commenter's Facebook profile
